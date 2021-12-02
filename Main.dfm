@@ -1,13 +1,14 @@
 object FormMain: TFormMain
   Left = 337
   Top = 123
-  Width = 846
-  Height = 580
   VertScrollBar.Tracking = True
   Caption = 'Pic Cut'
+  ClientHeight = 685
+  ClientWidth = 962
   Color = clBtnFace
   Constraints.MinHeight = 580
   Constraints.MinWidth = 811
+  DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -20,61 +21,82 @@ object FormMain: TFormMain
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object ScrollBox: TScrollBox
+  object Bevel: TBevel
     Left = 177
     Top = 0
-    Width = 653
-    Height = 442
+    Width = 1
+    Height = 605
+    Align = alLeft
+    Shape = bsLeftLine
+  end
+  object ScrollBox: TScrollBox
+    Left = 178
+    Top = 0
+    Width = 784
+    Height = 605
+    HorzScrollBar.Smooth = True
     HorzScrollBar.Tracking = True
+    VertScrollBar.Smooth = True
     VertScrollBar.Tracking = True
     Align = alClient
     BevelInner = bvNone
     BevelOuter = bvNone
     BorderStyle = bsNone
     TabOrder = 0
-    object DrawPanel: TDrawPanel
-      Left = 24
-      Top = 16
-      Width = 618
-      Height = 506
-      Align = alCustom
-      Caption = 'DrawPanel'
+    object PanelClient: TPanel
+      Left = 6
+      Top = 3
+      Width = 755
+      Height = 596
+      BevelOuter = bvNone
+      Color = clSilver
+      ParentBackground = False
+      ShowCaption = False
       TabOrder = 0
-      OnMouseDown = DrawPanelMouseDown
-      OnMouseMove = DrawPanelMouseMove
-      OnMouseUp = DrawPanelMouseUp
-      OnPaint = DrawPanelPaint
+      object DrawPanel: TDrawPanel
+        Left = 0
+        Top = 0
+        Width = 755
+        Height = 596
+        OnPaint = DrawPanelPaint
+        DefaultPaint = False
+        OnMouseDown = DrawPanelMouseDown
+        OnMouseMove = DrawPanelMouseMove
+        OnMouseUp = DrawPanelMouseUp
+        Align = alClient
+        BevelOuter = bvNone
+        Color = clGray
+        Ctl3D = True
+        ParentBackground = False
+        ParentCtl3D = False
+        ShowCaption = False
+        TabOrder = 0
+        TabStop = True
+      end
     end
   end
   object PanelMenu: TPanel
     Left = 0
     Top = 0
     Width = 177
-    Height = 442
+    Height = 605
     Align = alLeft
     BevelOuter = bvNone
+    Color = clGray
     TabOrder = 1
     object LabelDir: TLabel
       Left = 8
-      Top = 184
+      Top = 278
       Width = 111
       Height = 13
       Caption = #1050#1072#1090#1072#1083#1086#1075' '#1085#1072#1079#1085#1072#1095#1077#1085#1080#1103':'
     end
     object ButtonOpenDir: TSpeedButton
-      Left = 144
-      Top = 199
+      Left = 146
+      Top = 293
       Width = 23
       Height = 22
       OnClick = ButtonOpenDirClick
-    end
-    object Bevel: TBevel
-      Left = 168
-      Top = 0
-      Width = 9
-      Height = 442
-      Align = alRight
-      Shape = bsRightLine
     end
     object ButtonOpenPic: TButton
       Left = 8
@@ -115,71 +137,50 @@ object FormMain: TFormMain
         Height = 13
         Caption = #1050#1086#1083'-'#1074#1086' '#1096#1072#1075#1086#1074':'
       end
-      object SpinEditorStep: TSpinEditor
+      object SpinEditorStep: TlkSpinEdit
         Left = 8
         Top = 32
         Width = 145
-        Height = 22
-        Alignment = taLeftJustify
-        BorderStyle = bsSingle
-        Margin = 0
-        ParentColor = False
+        Height = 21
+        MaxValue = 0
+        MinValue = 0
         TabOrder = 0
-        TabStop = True
-        Text = '1 px'
-        VerticalAlignment = vaMiddle
-        AutoSelect = False
-        ReadOnly = False
-        ShowPreview = False
-        Min = 1.000000000000000000
-        Options = [eoAllowFloat, eoAllowSigns]
-        Precision = 0
-        TextAfter = ' px'
-        Value = 1.000000000000000000
-        Increment = 1.000000000000000000
+        Value = 100
+        LightButtons = False
       end
-      object SpinEditorCount: TSpinEditor
+      object SpinEditorCount: TlkSpinEdit
         Left = 8
         Top = 72
         Width = 145
-        Height = 22
-        Alignment = taLeftJustify
-        BorderStyle = bsSingle
-        Margin = 0
-        ParentColor = False
+        Height = 21
+        MaxValue = 0
+        MinValue = 0
         TabOrder = 1
-        TabStop = True
-        Text = '1'
-        VerticalAlignment = vaMiddle
-        AutoSelect = False
-        ReadOnly = False
-        ShowPreview = False
-        Min = 1.000000000000000000
-        Options = [eoAllowFloat, eoAllowSigns]
-        Precision = 0
-        Value = 1.000000000000000000
-        Increment = 1.000000000000000000
+        Value = 5
+        LightButtons = False
       end
     end
     object EditDir: TEdit
       Left = 8
-      Top = 200
+      Top = 294
       Width = 137
       Height = 21
       TabOrder = 3
     end
     object DrawPanelInfo: TDrawPanel
-      Left = 8
-      Top = 328
-      Width = 161
+      Left = 0
+      Top = 500
+      Width = 177
       Height = 105
-      Caption = 'DrawPanelInfo'
-      TabOrder = 4
       OnPaint = DrawPanelInfoPaint
+      DefaultPaint = False
+      Align = alBottom
+      ParentBackground = False
+      TabOrder = 4
     end
     object GroupBoxSetSel: TGroupBox
       Left = 8
-      Top = 232
+      Top = 183
       Width = 161
       Height = 89
       Caption = #1059#1082#1072#1079#1072#1090#1100' '#1087#1086#1083#1086#1078#1077#1085#1080#1077' '#1074#1099#1076#1077#1083'.'
@@ -194,7 +195,7 @@ object FormMain: TFormMain
       object RadioButton1: TRadioButton
         Left = 8
         Top = 32
-        Width = 153
+        Width = 150
         Height = 17
         Caption = #1057#1083#1077#1074', '#1057#1074#1077#1088#1093', '#1057#1087#1088#1072#1074', '#1057#1085#1080#1079
         TabOrder = 0
@@ -221,17 +222,14 @@ object FormMain: TFormMain
   end
   object DrawPanelPreview: TDrawPanel
     Left = 0
-    Top = 442
-    Width = 830
+    Top = 605
+    Width = 962
     Height = 80
-    Align = alBottom
-    Caption = 'DrawPanelPreview'
-    TabOrder = 2
     OnPaint = DrawPanelPreviewPaint
-  end
-  object XPManifest: TXPManifest
-    Left = 304
-    Top = 120
+    DefaultPaint = False
+    Align = alBottom
+    ParentBackground = False
+    TabOrder = 2
   end
   object OpenPictureDialog: TOpenPictureDialog
     Filter = 'JPEG Image File (*.jpeg)|*.jpeg; *.jpg'
